@@ -3,7 +3,6 @@ package com.example.webbanaoquantreem.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +12,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date createDate;
+
+    private Double totalPrice;
     @ManyToOne
     @JoinColumn(name = "accout_id")
     private Account account;
@@ -55,9 +56,18 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Long id, Date createDate, Account account, List<CartItem> cartItems) {
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Cart(Long id, Date createDate, Double totalPrice, Account account, List<CartItem> cartItems) {
         this.id = id;
         this.createDate = createDate;
+        this.totalPrice = totalPrice;
         this.account = account;
         this.cartItems = cartItems;
     }

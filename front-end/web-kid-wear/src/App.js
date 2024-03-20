@@ -1,14 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './component/Header';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './component/HomePage';
+import Hompage from './component/Hompage';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<HomePage />}></Route>
 
+    <Routes>
+      <Route path='/' element={<Hompage />}></Route>
     </Routes>
   );
 }
