@@ -5,30 +5,19 @@ import { IoCartOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import * as service from "../service/ProductServie"
 
-const Header = (props) => {
-    const [roleUser, setRoleUser] = useState("");
-    const [userName, setUserName] = useState("");
-    const [isLogin, setIsLogin] = useState(false)
-    const [img, setImg] = useState("");
-
+const Header2 = (props) => {
     const [sumCart, setSumCart] = useState(0);
+
     useEffect(() => {
-        const token = sessionStorage.getItem('accessToken')
-        const role = sessionStorage.getItem('roleUser');
-        const user = sessionStorage.getItem('user');
-        const userPhoto = sessionStorage.getItem('userPhoto')
-        if (role !== null) {
-            setRoleUser(role)
-            const fetchApi1 = async (accountId) => {
-                try {
-                    let res1 = await service.getCart(accountId);
-                    setSumCart(res1.length)
-                } catch (e) {
-                    setSumCart(0)
-                }
-            };
-            fetchApi1(1);
-        }
+        const fetchApi1 = async (accountId) => {
+            try {
+                let res1 = await service.getCart(accountId);
+                setSumCart(res1.length)
+            } catch (e) {
+                setSumCart(0)
+            }
+        };
+        fetchApi1(1);
     }, [props]);
     return (
         <div>
@@ -215,129 +204,126 @@ const Header = (props) => {
                                                     </li>
                                                 </ul>
                                             </div>
-                                            {roleUser && (
-
-                                                <div className="block-minicart block-dreaming kodory-mini-cart kodory-dropdown">
-                                                    <div
-                                                        className="shopcart-dropdown block-cart-link"
-                                                        data-kodory="kodory-dropdown"
-                                                    >
-                                                        <Link to={"/cart"} className="block-link link-dropdown" href="cart.html">
-                                                            <span><IoCartOutline /></span>
-                                                            <span className="count">{sumCart}</span>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="widget kodory widget_shopping_cart">
-                                                        <div className="widget_shopping_cart_content">
-                                                            <h3 className="minicart-title">
-                                                                Your Cart
-                                                                <span className="minicart-number-items">3</span>
-                                                            </h3>
-                                                            <ul className="kodory-mini-cart cart_list product_list_widget">
-                                                                <li className="kodory-mini-cart-item mini_cart_item">
-                                                                    <a
-                                                                        href="#"
-                                                                        className="remove remove_from_cart_button"
-                                                                    >
-                                                                        ×
-                                                                    </a>
-                                                                    <a href="#">
-                                                                        <img
-                                                                            src="assets/images/apro134-1-600x778.jpg"
-                                                                            className="attachment-kodory_thumbnail size-kodory_thumbnail"
-                                                                            alt="img"
-                                                                            width={600}
-                                                                            height={778}
-                                                                        />
-                                                                        T-shirt with skirt – Pink&nbsp;
-                                                                    </a>
-                                                                    <span className="quantity">
-                                                                        1 ×{" "}
-                                                                        <span className="kodory-Price-amount amount">
-                                                                            <span className="kodory-Price-currencySymbol">
-                                                                                $
-                                                                            </span>
-                                                                            150.00
-                                                                        </span>
-                                                                    </span>
-                                                                </li>
-                                                                <li className="kodory-mini-cart-item mini_cart_item">
-                                                                    <a
-                                                                        href="#"
-                                                                        className="remove remove_from_cart_button"
-                                                                    >
-                                                                        ×
-                                                                    </a>
-                                                                    <a href="#">
-                                                                        <img
-                                                                            src="assets/images/apro1113-600x778.jpg"
-                                                                            className="attachment-kodory_thumbnail size-kodory_thumbnail"
-                                                                            alt="img"
-                                                                            width={600}
-                                                                            height={778}
-                                                                        />
-                                                                        Ethereal Toys&nbsp;
-                                                                    </a>
-                                                                    <span className="quantity">
-                                                                        1 ×{" "}
-                                                                        <span className="kodory-Price-amount amount">
-                                                                            <span className="kodory-Price-currencySymbol">
-                                                                                $
-                                                                            </span>
-                                                                            129.00
-                                                                        </span>
-                                                                    </span>
-                                                                </li>
-                                                                <li className="kodory-mini-cart-item mini_cart_item">
-                                                                    <a
-                                                                        href="#"
-                                                                        className="remove remove_from_cart_button"
-                                                                    >
-                                                                        ×
-                                                                    </a>
-                                                                    <a href="#">
-                                                                        <img
-                                                                            src="assets/images/apro201-1-600x778.jpg"
-                                                                            className="attachment-kodory_thumbnail size-kodory_thumbnail"
-                                                                            alt="img"
-                                                                            width={600}
-                                                                            height={778}
-                                                                        />
-                                                                        Red Car&nbsp;
-                                                                    </a>
-                                                                    <span className="quantity">
-                                                                        1 ×{" "}
-                                                                        <span className="kodory-Price-amount amount">
-                                                                            <span className="kodory-Price-currencySymbol">
-                                                                                $
-                                                                            </span>
-                                                                            139.00
-                                                                        </span>
-                                                                    </span>
-                                                                </li>
-                                                            </ul>
-                                                            <p className="kodory-mini-cart__total total">
-                                                                <strong>Subtotal:</strong>
-                                                                <span className="kodory-Price-amount amount">
-                                                                    <span className="kodory-Price-currencySymbol">$</span>
-                                                                    418.00
-                                                                </span>
-                                                            </p>
-                                                            <p className="kodory-mini-cart__buttons buttons">
-                                                                <a href="cart.html" className="button kodory-forward">
-                                                                    Viewcart
-                                                                </a>
+                                            <div className="block-minicart block-dreaming kodory-mini-cart kodory-dropdown">
+                                                <div
+                                                    className="shopcart-dropdown block-cart-link"
+                                                    data-kodory="kodory-dropdown"
+                                                >
+                                                    <Link to={"/cart"} className="block-link link-dropdown" href="cart.html">
+                                                        <span><IoCartOutline /></span>
+                                                        <span className="count">{sumCart}</span>
+                                                    </Link>
+                                                </div>
+                                                <div className="widget kodory widget_shopping_cart">
+                                                    <div className="widget_shopping_cart_content">
+                                                        <h3 className="minicart-title">
+                                                            Your Cart
+                                                            <span className="minicart-number-items">3</span>
+                                                        </h3>
+                                                        <ul className="kodory-mini-cart cart_list product_list_widget">
+                                                            <li className="kodory-mini-cart-item mini_cart_item">
                                                                 <a
-                                                                    href="checkout.html"
-                                                                    className="button checkout kodory-forward"
+                                                                    href="#"
+                                                                    className="remove remove_from_cart_button"
                                                                 >
-                                                                    Checkout
+                                                                    ×
                                                                 </a>
-                                                            </p>
-                                                        </div>
+                                                                <a href="#">
+                                                                    <img
+                                                                        src="assets/images/apro134-1-600x778.jpg"
+                                                                        className="attachment-kodory_thumbnail size-kodory_thumbnail"
+                                                                        alt="img"
+                                                                        width={600}
+                                                                        height={778}
+                                                                    />
+                                                                    T-shirt with skirt – Pink&nbsp;
+                                                                </a>
+                                                                <span className="quantity">
+                                                                    1 ×{" "}
+                                                                    <span className="kodory-Price-amount amount">
+                                                                        <span className="kodory-Price-currencySymbol">
+                                                                            $
+                                                                        </span>
+                                                                        150.00
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                            <li className="kodory-mini-cart-item mini_cart_item">
+                                                                <a
+                                                                    href="#"
+                                                                    className="remove remove_from_cart_button"
+                                                                >
+                                                                    ×
+                                                                </a>
+                                                                <a href="#">
+                                                                    <img
+                                                                        src="assets/images/apro1113-600x778.jpg"
+                                                                        className="attachment-kodory_thumbnail size-kodory_thumbnail"
+                                                                        alt="img"
+                                                                        width={600}
+                                                                        height={778}
+                                                                    />
+                                                                    Ethereal Toys&nbsp;
+                                                                </a>
+                                                                <span className="quantity">
+                                                                    1 ×{" "}
+                                                                    <span className="kodory-Price-amount amount">
+                                                                        <span className="kodory-Price-currencySymbol">
+                                                                            $
+                                                                        </span>
+                                                                        129.00
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                            <li className="kodory-mini-cart-item mini_cart_item">
+                                                                <a
+                                                                    href="#"
+                                                                    className="remove remove_from_cart_button"
+                                                                >
+                                                                    ×
+                                                                </a>
+                                                                <a href="#">
+                                                                    <img
+                                                                        src="assets/images/apro201-1-600x778.jpg"
+                                                                        className="attachment-kodory_thumbnail size-kodory_thumbnail"
+                                                                        alt="img"
+                                                                        width={600}
+                                                                        height={778}
+                                                                    />
+                                                                    Red Car&nbsp;
+                                                                </a>
+                                                                <span className="quantity">
+                                                                    1 ×{" "}
+                                                                    <span className="kodory-Price-amount amount">
+                                                                        <span className="kodory-Price-currencySymbol">
+                                                                            $
+                                                                        </span>
+                                                                        139.00
+                                                                    </span>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                        <p className="kodory-mini-cart__total total">
+                                                            <strong>Subtotal:</strong>
+                                                            <span className="kodory-Price-amount amount">
+                                                                <span className="kodory-Price-currencySymbol">$</span>
+                                                                418.00
+                                                            </span>
+                                                        </p>
+                                                        <p className="kodory-mini-cart__buttons buttons">
+                                                            <a href="cart.html" className="button kodory-forward">
+                                                                Viewcart
+                                                            </a>
+                                                            <a
+                                                                href="checkout.html"
+                                                                className="button checkout kodory-forward"
+                                                            >
+                                                                Checkout
+                                                            </a>
+                                                        </p>
                                                     </div>
                                                 </div>
-                                            )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -595,4 +581,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default Header2;

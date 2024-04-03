@@ -9,6 +9,10 @@ public class CartItem {
     private Long id;
     private Double price;
     private Long quantity;
+
+
+
+    private Boolean status = false;
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -56,14 +60,21 @@ public class CartItem {
     public void setCart(Cart cart) {
         this.cart = cart;
     }
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     public CartItem() {
     }
 
-    public CartItem(Long id, Double price, Long quantity, Product product, Cart cart) {
-        this.id = id;
+    public CartItem(Double price, Long quantity, Boolean status, Product product, Cart cart) {
         this.price = price;
         this.quantity = quantity;
+        this.status = status;
         this.product = product;
         this.cart = cart;
     }
